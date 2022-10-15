@@ -59,10 +59,4 @@ a {
     font-size: 60%;
   }
 }
-
-@media (max-width: 550px) {
-  html {
-    font-size: 40%;
-  }
-}
 `

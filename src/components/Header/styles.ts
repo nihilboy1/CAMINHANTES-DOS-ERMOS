@@ -9,7 +9,7 @@ export const Header = styled.header`
   align-items: center;
   position: absolute;
   left: 50%;
-  top: 0;
+  top: -15px;
 
   border-bottom-right-radius: 55px;
   border-bottom-left-radius: 55px;
@@ -32,4 +32,5 @@ export const Title = styled.h1`
 export const Subtitle = styled.p`
   font-family: 'Supermercado One', cursive;
   color: white;
+  text-decoration: underline;
 `
