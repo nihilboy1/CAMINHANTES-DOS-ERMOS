@@ -4,20 +4,19 @@ interface InputProps {
   tiny: boolean
   type?: string
   max?: number
-  value?: string
+  value: number
+  topDistance?: string
 }
 
 export const InputContainer = styled.div<InputProps>`
   padding: 0.2rem;
   margin-bottom: 0.2rem;
-  background: ${({ tiny }) =>
-    tiny
-      ? ''
-      : 'linear-gradient(270deg, #232c17 0%, rgba(35, 44, 23, 0) 100%)'};
+  background: linear-gradient(270deg, #232c17 0%, rgba(35, 44, 23, 0) 100%);
   gap: 0.5rem;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  position: absolute;
+  top: ${({ topDistance }) => `${topDistance}rem`};
   border-radius: 0.5rem;
 `
 
@@ -26,9 +25,7 @@ export const LabelInput = styled.label<InputProps>`
   justify-content: center;
   font-family: 'Grenze';
   color: ${({ type, value, max }) =>
-    type === 'select'
-      ? 'white'
-      : max && (Number(value) > max ? '#a83234' : 'white')};
+    type === 'select' ? 'white' : max && (value > max ? '#a83234' : 'white')};
   font-size: ${({ tiny }) => (tiny ? '1rem' : '1.5rem')};
 `
 
@@ -53,7 +50,7 @@ export const SelectInput = styled.select<InputProps>`
   }
 `
 
-export const GenericInput = styled.input<InputProps>`
+export const TextAndNumberInput = styled.input<InputProps>`
   text-align: center;
   font-family: 'Grenze';
   color: white;

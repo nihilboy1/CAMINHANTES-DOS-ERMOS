@@ -10,9 +10,10 @@ export const Header = styled.header`
   position: absolute;
   left: 50%;
   top: -15px;
+  min-width: 300px;
 
-  border-bottom-right-radius: 55px;
-  border-bottom-left-radius: 55px;
+  border-bottom-right-radius: 4rem;
+  border-bottom-left-radius: 4rem;
   transform: translate(-50%, 0%);
 `
 export const Title = styled.h1`
@@ -28,9 +29,20 @@ export const Title = styled.h1`
 
   font-family: 'Grenze';
   font-size: 3rem;
+
+  @media (max-width: 720px) {
+    & {
+      font-size: 2.4rem;
+    }
+  }
 `
 export const Subtitle = styled.p`
   font-family: 'Supermercado One', cursive;
   color: white;
   text-decoration: underline;
+  font-size: 1rem;
+
+
+
+  
 `

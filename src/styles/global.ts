@@ -1,4 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
+import pageBackground from '../assets/background.png'
+
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -28,6 +30,9 @@ html {
   width: 100vw;
   height: 100vh;
   padding: 1.5rem 0.5rem 0.15rem 0.5rem;
+  background-image: url(${pageBackground});
+  background-position: center;
+
 }
 
 
@@ -51,12 +56,6 @@ a {
 @media (max-width: 1080px) {
   html {
     font-size: 80%;
-  }
-}
-
-@media (max-width: 768px) {
-  html {
-    font-size: 60%;
   }
 }
 `
