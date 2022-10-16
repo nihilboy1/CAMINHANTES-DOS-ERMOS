@@ -6,20 +6,20 @@ import * as S from './styles/App'
 const transportOptions = [
   { id: 1, name: 'A pé' },
   { id: 2, name: 'Cavalo' },
-  { id: 3, name: 'Boi' }
+  { id: 3, name: 'Boi' },
+  { id: 4, name: 'Camelo' }
 ]
 const overloadOptions = [
   { id: 1, name: 'Não' },
   { id: 2, name: 'Sim' }
 ]
 const marchIntensityOptions = [
-  { id: 1, name: 'Leve' },
-  { id: 2, name: 'Normal' },
-  { id: 3, name: 'Pesada' }
+  { id: 1, name: 'Normal' },
+  { id: 2, name: 'Forçada' }
 ]
 const difficultTerrainOptions = [
   { id: 1, name: 'Nada' },
-  { id: 2, name: 'Um pouco' },
+  { id: 2, name: 'Pequena parte' },
   { id: 3, name: 'A metade' },
   { id: 4, name: 'A maior parte' },
   { id: 5, name: 'Todo o trajeto' }
@@ -51,6 +51,10 @@ export function App() {
   const [vehicleWeight, setVehicleWeight] = useState<string>(
     vehicleWeightOptions[0].name
   )
+  const [distance, setDistance] = useState<number>(1)
+  const [dailyMarch, setDailyMarch] = useState<number>(1)
+  const [adventurersAmount, setAdventurersAmount] = useState<number>(1)
+  const [animalsAmount, setAnimalsAmount] = useState<number>(1)
   return (
     <S.Container>
       <Header />
@@ -62,6 +66,7 @@ export function App() {
           textInputMaxLength={4}
           numberInputMaxValue={9999}
           titleMessage="Informe um valor em km, entre 1 e 9999"
+          specificFunction={setDistance}
         />
         <Input
           stateStringChange={setTransport}
@@ -70,7 +75,17 @@ export function App() {
           type={'select'}
           id={'transport'}
           name="Meio de transporte: "
-          titleMessage="Selecione o meio de transporte ou animal de tração"
+          titleMessage={
+            transport === 'A pé'
+              ? `Velocidade de locomoção média de 6,7km/h`
+              : transport === 'Cavalo'
+              ? 'Velocidade de locomoção média de 24,2km/h, com pausas de 1h a cada 40km'
+              : transport === 'Boi'
+              ? 'Velocidade de locomoção média de 12,2km/h, com pausas de 1h a cada 65km'
+              : transport === 'Camelo'
+              ? 'Velocidade de locomoção média de 13,2km/h, com pausas de 45min a cada 100km'
+              : ''
+          }
         />
         <Input
           stateStringChange={setOverload}
@@ -79,7 +94,11 @@ export function App() {
           type={'select'}
           id={'overload'}
           name="Aplica-se sobrecarga? "
-          titleMessage="Marcar que 'Sim', aumenta em 15% o tempo de duração da viagem. (Para quando o grupo quiser transportar o corpo de um gigante morto ou algo do tipo... "
+          titleMessage={
+            overload === 'Sim'
+              ? 'Sobrecarga aumenta o tempo de duração da viagem em 15%'
+              : 'Carga normal não gera bonus nem penalidade ao tempo de duração da viagem'
+          }
         />
         <Input
           id="dailyMarch"
@@ -88,6 +107,7 @@ export function App() {
           textInputMaxLength={2}
           numberInputMaxValue={24}
           titleMessage=""
+          specificFunction={setDailyMarch}
         />
         <Input
           stateStringChange={setMarchIntensity}
@@ -96,7 +116,11 @@ export function App() {
           type={'select'}
           id={'marchIntensity'}
           name="Intensidade da marcha: "
-          titleMessage=""
+          titleMessage={
+            marchIntensity === 'Normal'
+              ? 'A marcha "Normal", não gera bonus nem penalidades ao tempo de duração da viagem'
+              : 'A marcha "Forçada" reduz a duração da viagem em 25%, mas depois a quarta hora de locomoção, e de hora em hora após isso, todos os membros do grupo (ou os animais que os estiverem carregando) devem realizar um teste de resistencia de constituição CD12, com uma falha resultando num nivel de exaustão adquirido. Além disso, os membros do grupo recebem penalidade de -5 em testes de percepção durante todo o trajeto.'
+          }
         />
         <Input
           id="adventurersAmount"
@@ -104,7 +128,8 @@ export function App() {
           type="number"
           textInputMaxLength={2}
           numberInputMaxValue={12}
-          titleMessage="O ministério da saude adverte: Não é saudável mestrar para mais de 12 pessoas..."
+          titleMessage="Acima de 8 membros, o tempo de duração de viagem aumenta em 10%"
+          specificFunction={setAdventurersAmount}
         />
 
         <Input
@@ -148,6 +173,7 @@ export function App() {
                   textInputMaxLength={2}
                   numberInputMaxValue={2}
                   titleMessage=""
+                  specificFunction={setAnimalsAmount}
                 />
               </>
             )}

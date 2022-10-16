@@ -13,6 +13,7 @@ interface InputProps {
   titleMessage: string
   tiny?: boolean
   stateStringChange?: (value: string) => void
+  specificFunction?: (value: number) => void
   stateStringValue?: string
 }
 
@@ -26,13 +27,15 @@ export function Input({
   titleMessage,
   tiny = false,
   stateStringChange,
-  stateStringValue
+  stateStringValue,
+  specificFunction
 }: InputProps) {
   const [genericInputValue, setGenericInputValue] = useState('')
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const result = event.target.value.replace(/\D/g, '')
     setGenericInputValue(result)
+    specificFunction && specificFunction(Number(result))
   }
 
   return (
