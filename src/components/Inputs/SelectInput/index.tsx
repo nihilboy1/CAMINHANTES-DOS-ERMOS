@@ -1,14 +1,13 @@
-import { transportOptionsProps } from '../../../data/data'
+import { OptionsProps } from '../../../data/data'
 import * as S from './styles'
 interface SelectInputProps {
-  data: transportOptionsProps[]
+  data: OptionsProps[]
   id: string
   name: string
   titleMessage: string
   tiny?: boolean
   topDistance: string
-  specificFunction: (value: transportOptionsProps) => void
-  specificValue: string
+  specificFunction: (value: OptionsProps) => void
 }
 
 export function SelectInput({
@@ -18,8 +17,7 @@ export function SelectInput({
   titleMessage,
   tiny = false,
   topDistance,
-  specificFunction,
-  specificValue
+  specificFunction
 }: SelectInputProps) {
   return (
     <S.InputContainer tiny={tiny} topDistance={topDistance}>
@@ -33,7 +31,6 @@ export function SelectInput({
         name={id}
         id={id}
         onChange={e => specificFunction(JSON.parse(e.target.value))}
-        value={specificValue}
       >
         {data.map(option => {
           return (

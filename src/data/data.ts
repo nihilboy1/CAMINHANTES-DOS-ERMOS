@@ -1,4 +1,4 @@
-export interface transportOptionsProps {
+export interface OptionsProps {
   id: number
   name: string
   kmh?: number
@@ -7,10 +7,10 @@ export interface transportOptionsProps {
 }
 
 export const transportOptions = [
-  { id: 1, name: 'A pé', kmh: 6.7, kmToPause: 0, minutesPauseTime: 0 },
+  { id: 1, name: 'A pé', kmh: 6.7, kmToPause: 50, minutesPauseTime: 30 },
   { id: 2, name: 'Cavalo', kmh: 24.2, kmToPause: 40, minutesPauseTime: 60 },
   { id: 3, name: 'Boi', kmh: 12.2, kmToPause: 65, minutesPauseTime: 60 },
-  { id: 4, name: 'Camelo', kmh: 6.7, kmToPause: 100, minutesPauseTime: 45 }
+  { id: 4, name: 'Camelo', kmh: 13.7, kmToPause: 100, minutesPauseTime: 45 }
 ]
 
 export const overloadOptions = [
