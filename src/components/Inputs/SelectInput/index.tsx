@@ -1,40 +1,29 @@
+import { transportOptionsProps } from '../../../data/data'
 import * as S from './styles'
 interface SelectInputProps {
-  data?: {
-    id: number
-    name: string
-  }[]
+  data: transportOptionsProps[]
   id: string
   name: string
-  textInputMaxLength?: number
-  numberInputMaxValue?: number
   titleMessage: string
   tiny?: boolean
   topDistance: string
-  specificStringFunction?: (value: string) => void
-  specificStringValue?: string
+  specificFunction: (value: transportOptionsProps) => void
+  specificValue: string
 }
 
 export function SelectInput({
   data,
   id,
   name,
-  numberInputMaxValue,
   titleMessage,
   tiny = false,
   topDistance,
-  specificStringFunction,
-  specificStringValue
+  specificFunction,
+  specificValue
 }: SelectInputProps) {
   return (
     <S.InputContainer tiny={tiny} topDistance={topDistance}>
-      <S.LabelInput
-        max={numberInputMaxValue}
-        tiny={tiny}
-        type="select"
-        htmlFor={id}
-        className="font-semibold"
-      >
+      <S.LabelInput tiny={tiny} htmlFor={id}>
         {name}
       </S.LabelInput>
 
@@ -43,14 +32,12 @@ export function SelectInput({
         tiny={tiny}
         name={id}
         id={id}
-        onChange={e =>
-          specificStringFunction && specificStringFunction(e.target.value)
-        }
-        value={specificStringValue}
+        onChange={e => specificFunction(JSON.parse(e.target.value))}
+        value={specificValue}
       >
-        {data?.map(option => {
+        {data.map(option => {
           return (
-            <option key={option.name} value={option.name}>
+            <option key={option.name} value={JSON.stringify(option)}>
               {option.name}
             </option>
           )

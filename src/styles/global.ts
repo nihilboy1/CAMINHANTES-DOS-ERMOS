@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   * {
   padding: 0;
   margin: 0;
+  outline: none;
   box-sizing: border-box;
   font: 400 16px sans-serif;
   transition: 0.4s;

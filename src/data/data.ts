@@ -1,9 +1,18 @@
+export interface transportOptionsProps {
+  id: number
+  name: string
+  kmh?: number
+  kmToPause?: number
+  minutesPauseTime?: number
+}
+
 export const transportOptions = [
-  { id: 1, name: 'A pé' },
-  { id: 2, name: 'Cavalo' },
-  { id: 3, name: 'Boi' },
-  { id: 4, name: 'Camelo' }
+  { id: 1, name: 'A pé', kmh: 6.7, kmToPause: 0, minutesPauseTime: 0 },
+  { id: 2, name: 'Cavalo', kmh: 24.2, kmToPause: 40, minutesPauseTime: 60 },
+  { id: 3, name: 'Boi', kmh: 12.2, kmToPause: 65, minutesPauseTime: 60 },
+  { id: 4, name: 'Camelo', kmh: 6.7, kmToPause: 100, minutesPauseTime: 45 }
 ]
+
 export const overloadOptions = [
   { id: 1, name: 'Não' },
   { id: 2, name: 'Sim' }
@@ -26,7 +35,7 @@ export const isUsingVehicleOptions = [
 ]
 
 export const vehicleWeightOptions = [
-  { id: 1, name: 'Leve' },
+  { id: 1, name: 'Leve/Pequeno' },
   { id: 2, name: 'Normal' },
-  { id: 3, name: 'Pesado' }
+  { id: 3, name: 'Pesado/Grande' }
 ]
