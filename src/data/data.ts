@@ -1,9 +1,14 @@
+export interface transportOptionsProps {
+  id: number
+  name: string
+  kmh: number
+  kmToPause: number
+  minutesPauseTime: number
+}
+
 export interface OptionsProps {
   id: number
   name: string
-  kmh?: number
-  kmToPause?: number
-  minutesPauseTime?: number
 }
 
 export const transportOptions = [

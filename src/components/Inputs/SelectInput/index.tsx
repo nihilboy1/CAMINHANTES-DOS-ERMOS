@@ -1,4 +1,4 @@
-import { OptionsProps } from '../../../data/data'
+import { OptionsProps, transportOptionsProps } from '../../../data/data'
 import * as S from './styles'
 interface SelectInputProps {
   data: OptionsProps[]
@@ -7,7 +7,7 @@ interface SelectInputProps {
   titleMessage: string
   tiny?: boolean
   topDistance: string
-  specificFunction: (value: OptionsProps) => void
+  specificFunction: (value: any ) => void
 }
 
 export function SelectInput({

@@ -19,6 +19,7 @@ export const InputContainer = styled.div<InputContainerProps>`
   flex-direction: row;
   position: absolute;
   top: ${({ topDistance }) => `${topDistance}rem`};
+  left: 3%;
   border-radius: 0.5rem;
 `
 

@@ -9,12 +9,15 @@ import {
   OptionsProps,
   overloadOptions,
   transportOptions,
+  transportOptionsProps,
   vehicleWeightOptions
 } from './data/data'
 import * as S from './styles/App'
 
 export function App() {
-  const [transport, setTransport] = useState<OptionsProps>(transportOptions[0])
+  const [transport, setTransport] = useState<transportOptionsProps>(
+    transportOptions[0]
+  )
   const [overload, setOverload] = useState<OptionsProps>(overloadOptions[0])
   const [marchIntensity, setMarchIntensity] = useState<OptionsProps>(
     marchIntensityOptions[0]
@@ -34,10 +37,11 @@ export function App() {
   const [animalsAmount, setAnimalsAmount] = useState<number>(1)
 
   function calculateTravelTime() {
-    if (transport.kmh && transport.kmToPause) {
-      
-      const pauseTimes = Math.floor(distance / transport.kmToPause)
-
+    const time = distance / transport.kmh
+    let fixedTime = Number(time.toFixed(2))
+    let minutesTime = time.toFixed(2).slice(-2)
+    if (Number(minutesTime) > 60) {
+      fixedTime = fixedTime + 1
     }
   }
 
@@ -118,7 +122,7 @@ export function App() {
         <SelectInput
           id="difficultTerrain"
           name="Quanto da viagem será feita em terreno difícil? "
-          data={marchIntensityOptions}
+          data={difficultTerrainOptions}
           specificFunction={setDifficultTerrain}
           titleMessage=""
           topDistance="23.5"

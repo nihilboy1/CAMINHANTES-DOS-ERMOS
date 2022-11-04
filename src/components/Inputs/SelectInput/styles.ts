@@ -16,6 +16,7 @@ export const InputContainer = styled.div<InputProps>`
   position: absolute;
   top: ${({ topDistance }) => `${topDistance}rem`};
   border-radius: 0.5rem;
+  left: 3%;
 `
 
 export const LabelInput = styled.label<InputProps>`
