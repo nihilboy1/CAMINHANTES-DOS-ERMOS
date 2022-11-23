@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
   font: 400 16px sans-serif;
   transition: 0.4s;
   flex-direction: column;
+  border: none;
 }
 
 :root {

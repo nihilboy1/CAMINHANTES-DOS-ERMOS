@@ -22,6 +22,12 @@ export const overloadOptions = [
   { id: 1, name: 'Não' },
   { id: 2, name: 'Sim' }
 ]
+
+export const moreThan8AdventurersOptions = [
+  { id: 1, name: 'Não' },
+  { id: 2, name: 'Sim' }
+]
+
 export const marchIntensityOptions = [
   { id: 1, name: 'Normal' },
   { id: 2, name: 'Forçada' }

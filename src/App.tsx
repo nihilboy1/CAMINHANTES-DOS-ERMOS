@@ -1,11 +1,15 @@
+import moment from 'moment'
 import { useState } from 'react'
+import { CalculateButton } from './components/CalculateButton'
 import { Header } from './components/Header'
 import { SelectInput } from './components/Inputs/SelectInput'
 import { TextInput } from './components/Inputs/TextInput'
+import { ResultBox } from './components/ResultBox'
 import {
   difficultTerrainOptions,
   isUsingVehicleOptions,
   marchIntensityOptions,
+  moreThan8AdventurersOptions,
   OptionsProps,
   overloadOptions,
   transportOptions,
@@ -19,6 +23,10 @@ export function App() {
     transportOptions[0]
   )
   const [overload, setOverload] = useState<OptionsProps>(overloadOptions[0])
+  const [moreThanEight, setMoreThanEight] = useState<OptionsProps>(
+    moreThan8AdventurersOptions[0]
+  )
+
   const [marchIntensity, setMarchIntensity] = useState<OptionsProps>(
     marchIntensityOptions[0]
   )
@@ -33,19 +41,35 @@ export function App() {
   )
   const [distance, setDistance] = useState<number>(1)
   const [dailyMarch, setDailyMarch] = useState<number>(1)
-  const [adventurersAmount, setAdventurersAmount] = useState<number>(1)
   const [animalsAmount, setAnimalsAmount] = useState<number>(1)
+  const [travelResult, setTravelResult] = useState('')
 
   function calculateTravelTime() {
     const time = distance / transport.kmh
-    let fixedTime = Number(time.toFixed(2))
-    let minutesTime = time.toFixed(2).slice(-2)
-    if (Number(minutesTime) > 60) {
-      fixedTime = fixedTime + 1
+    const secondsDailyMarch = dailyMarch * 3600
+    let secondsTime = time * 3600
+    if (secondsTime > secondsDailyMarch) {
+      console.log('Excedeu o tempo de marcha diário')
     }
+    if (overload.id === 2) {
+      const overloadPlusTime = (secondsTime * 15) / 100
+      secondsTime = secondsTime + overloadPlusTime
+      console.log('Sobrecarga está sendo aplicada')
+    }
+
+    if (moreThanEight.id === 2) {
+      const overloadPlusTime = (secondsTime * 15) / 100
+      secondsTime = secondsTime + overloadPlusTime
+      console.log('Mais de 8 membros no grupo')
+    }
+    const result = moment
+      .unix(secondsTime)
+      .utc()
+      .format('H [horas,] m [minutos e] s [segundos]')
+
+    setTravelResult(result)
   }
 
-  calculateTravelTime()
   return (
     <S.Container>
       <Header />
@@ -110,15 +134,19 @@ export function App() {
           }
           topDistance="17.5"
         />
-        <TextInput
-          id="adventurersAmount"
-          name="Quantidade de aventureiros: "
-          titleMessage="Acima de 8 membros, o tempo de duração de viagem aumenta em 10%"
-          specificFunction={setAdventurersAmount}
-          specificValue={adventurersAmount}
+        <SelectInput
+          id="overload"
+          name="O Grupo tem mais de 8 membros? "
+          data={moreThan8AdventurersOptions}
+          specificFunction={setMoreThanEight}
+          titleMessage={
+            moreThanEight.name === 'Sim'
+              ? 'Um grupo com mais de 8 membros tem a duração da viagem aumentada em 15%'
+              : 'Um grupo com menos de 8 membros não sofre nenhuma penalidade de movimentação'
+          }
           topDistance="20.5"
-          limitValue={12}
         />
+
         <SelectInput
           id="difficultTerrain"
           name="Quanto da viagem será feita em terreno difícil? "
@@ -169,6 +197,13 @@ export function App() {
           </S.vehicleContainer>
         )}
       </S.Form>
+      <CalculateButton
+        topDistance="37"
+        calculateTravelTime={calculateTravelTime}
+      />
+      {travelResult && (
+        <ResultBox topDistance="37.5" travelResult={travelResult} />
+      )}
     </S.Container>
   )
 }
