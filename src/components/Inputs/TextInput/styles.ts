@@ -21,6 +21,11 @@ export const InputContainer = styled.div<InputContainerProps>`
   top: ${({ topDistance }) => `${topDistance}rem`};
   left: 3%;
   border-radius: 0.5rem;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid white;
+  }
 `
 
 export const LabelInput = styled.label<InputProps>`

@@ -5,6 +5,7 @@ interface CalculateButtonProps {
 }
 
 export const CalculateButton = styled.button<CalculateButtonProps>`
+  height: 60px;
   padding: 1rem;
   position: absolute;
   background: #ffff;
@@ -12,8 +13,8 @@ export const CalculateButton = styled.button<CalculateButtonProps>`
   font-family: 'Grenze';
   color: black;
   font-weight: bold;
-  left: 3%;
-  font-size: 2rem;
+  left: 2rem;
+  font-size: 1.5rem;
   opacity: 0.5;
   top: ${({ topDistance }) => `${topDistance}rem`};
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);

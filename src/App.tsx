@@ -1,6 +1,4 @@
-import moment from 'moment'
-import { useState } from 'react'
-import { CalculateButton } from './components/CalculateButton'
+import { useEffect, useState } from 'react'
 import { Header } from './components/Header'
 import { SelectInput } from './components/Inputs/SelectInput'
 import { TextInput } from './components/Inputs/TextInput'
@@ -23,7 +21,7 @@ export function App() {
     transportOptions[0]
   )
   const [overload, setOverload] = useState<OptionsProps>(overloadOptions[0])
-  const [moreThanEight, setMoreThanEight] = useState<OptionsProps>(
+  const [moreThanEightAdverturers, setMoreThanEight] = useState<OptionsProps>(
     moreThan8AdventurersOptions[0]
   )
 
@@ -39,36 +37,83 @@ export function App() {
   const [vehicleWeight, setVehicleWeight] = useState<OptionsProps>(
     vehicleWeightOptions[0]
   )
-  const [distance, setDistance] = useState<number>(1)
-  const [dailyMarch, setDailyMarch] = useState<number>(1)
+  const [distance, setDistance] = useState<number>(0)
   const [animalsAmount, setAnimalsAmount] = useState<number>(1)
   const [travelResult, setTravelResult] = useState('')
 
   function calculateTravelTime() {
     const time = distance / transport.kmh
-    const secondsDailyMarch = dailyMarch * 3600
     let secondsTime = time * 3600
-    if (secondsTime > secondsDailyMarch) {
-      console.log('Excedeu o tempo de marcha diário')
-    }
+
     if (overload.id === 2) {
       const overloadPlusTime = (secondsTime * 15) / 100
       secondsTime = secondsTime + overloadPlusTime
-      console.log('Sobrecarga está sendo aplicada')
+      console.log('Aplicada a penalidade de SOBRECARGA')
     }
 
-    if (moreThanEight.id === 2) {
-      const overloadPlusTime = (secondsTime * 15) / 100
-      secondsTime = secondsTime + overloadPlusTime
-      console.log('Mais de 8 membros no grupo')
+    if (moreThanEightAdverturers.id === 2) {
+      const moreThanEightAdverturersPlusTime = (secondsTime * 15) / 100
+      secondsTime = secondsTime + moreThanEightAdverturersPlusTime
+      console.log('Aplicada a penalidade de QUANTIDADE DE AVENTUREIROS')
     }
-    const result = moment
-      .unix(secondsTime)
-      .utc()
-      .format('H [horas,] m [minutos e] s [segundos]')
 
-    setTravelResult(result)
+    if (marchIntensity.id == 2) {
+      const marchIntensityLessTime = (secondsTime * 25) / 100
+      secondsTime = secondsTime - marchIntensityLessTime
+      console.log('Aplicado o bônus de MARCHA FORÇADA')
+    }
+
+    if (difficultTerrain.id != 1) {
+      if (difficultTerrain.id == 2) {
+        const difficultTerrainPlusTime = (secondsTime * 20) / 100
+        secondsTime = secondsTime + difficultTerrainPlusTime
+        console.log('Aplicada a penalidade de 20% para TERRENO DIFICIL')
+      } else if (difficultTerrain.id == 3) {
+        const difficultTerrainPlusTime = (secondsTime * 40) / 100
+        secondsTime = secondsTime + difficultTerrainPlusTime
+        console.log('Aplicada a penalidade de 40% para TERRENO DIFICIL')
+      } else if (difficultTerrain.id == 4) {
+        const difficultTerrainPlusTime = (secondsTime * 60) / 100
+        secondsTime = secondsTime + difficultTerrainPlusTime
+        console.log('Aplicada a penalidade de 60% para TERRENO DIFICIL')
+      } else if (difficultTerrain.id == 5) {
+        const difficultTerrainPlusTime = (secondsTime * 80) / 100
+        secondsTime = secondsTime + difficultTerrainPlusTime
+        console.log('Aplicada a penalidade de 80% para TERRENO DIFICIL')
+      }
+    }
+
+    var days = Math.floor(secondsTime / (3600 * 24))
+    secondsTime -= days * 3600 * 24
+    var hrs = Math.floor(secondsTime / 3600)
+    secondsTime -= hrs * 3600
+    var mnts = Math.floor(secondsTime / 60)
+    secondsTime -= mnts * 60
+    const result = `${
+      days == 1 ? `${days} dia,` : days > 1 ? `${days} dias,` : ''
+    }  ${hrs == 1 ? `${hrs} hora,` : hrs > 1 ? `${hrs} horas,` : ''}  ${
+      mnts == 1 ? `${mnts} minuto,` : mnts > 1 ? `${mnts} minutos,` : ''
+    } ${
+      Math.round(secondsTime) == 1
+        ? `${Math.round(secondsTime)} segundo,`
+        : Math.round(secondsTime) > 1
+        ? `${Math.round(secondsTime)} segundos,`
+        : ''
+    } `
+
+    setTravelResult(secondsTime != 0 ? result : '*')
   }
+
+  useEffect(() => {
+    calculateTravelTime()
+  }, [
+    transport,
+    overload,
+    moreThanEightAdverturers,
+    marchIntensity,
+    distance,
+    difficultTerrain
+  ])
 
   return (
     <S.Container>
@@ -80,7 +125,7 @@ export function App() {
           titleMessage="Informe um valor em km, entre 1 e 9999"
           specificFunction={setDistance}
           specificValue={distance}
-          topDistance="5.2"
+          topDistance="6.5"
           limitValue={9999}
         />
         <SelectInput
@@ -99,7 +144,7 @@ export function App() {
               ? 'Com essa escolha, a velocidade de locomoção média de 13,2km/h, com pausas de 45min a cada 100km'
               : ''
           }
-          topDistance="8.5"
+          topDistance="9.5"
         />
         <SelectInput
           id="overload"
@@ -111,16 +156,7 @@ export function App() {
               ? 'Sobrecarga aumenta o tempo de duração da viagem em 15%'
               : 'Carga normal não gera bonus nem penalidade ao tempo de duração da viagem'
           }
-          topDistance="11.5"
-        />
-        <TextInput
-          id="dailyMarch"
-          name="Horas de marcha diária: "
-          titleMessage=""
-          specificFunction={setDailyMarch}
-          specificValue={dailyMarch}
-          topDistance="14.5"
-          limitValue={24}
+          topDistance="12.5"
         />
         <SelectInput
           id="marchIntensity"
@@ -132,19 +168,19 @@ export function App() {
               ? 'A marcha "Normal", não gera bonus nem penalidades ao tempo de duração da viagem'
               : 'A marcha "Forçada" reduz a duração da viagem em 25%, mas depois a quarta hora de locomoção, e de hora em hora após isso, todos os membros do grupo (ou os animais que os estiverem carregando) devem realizar um teste de resistencia de constituição CD12, com uma falha resultando num nivel de exaustão adquirido. Além disso, os membros do grupo recebem penalidade de -5 em testes de percepção durante todo o trajeto.'
           }
-          topDistance="17.5"
+          topDistance="15.5"
         />
         <SelectInput
-          id="overload"
+          id="moreThanEightAdverturers"
           name="O Grupo tem mais de 8 membros? "
           data={moreThan8AdventurersOptions}
           specificFunction={setMoreThanEight}
           titleMessage={
-            moreThanEight.name === 'Sim'
+            moreThanEightAdverturers.name === 'Sim'
               ? 'Um grupo com mais de 8 membros tem a duração da viagem aumentada em 15%'
               : 'Um grupo com menos de 8 membros não sofre nenhuma penalidade de movimentação'
           }
-          topDistance="20.5"
+          topDistance="18.5"
         />
 
         <SelectInput
@@ -152,8 +188,18 @@ export function App() {
           name="Quanto da viagem será feita em terreno difícil? "
           data={difficultTerrainOptions}
           specificFunction={setDifficultTerrain}
-          titleMessage=""
-          topDistance="23.5"
+          titleMessage={
+            difficultTerrain.name === 'Nada'
+              ? 'A duração da viagem não será efetada por esta condição'
+              : difficultTerrain.name === 'Pequena parte'
+              ? 'A duração da viagem aumenta em 20%'
+              : difficultTerrain.name === 'A metade'
+              ? 'A duração da viagem aumentaa em 40%'
+              : difficultTerrain.name === 'A maior parte'
+              ? 'A duração da viagem aumenta em 60%'
+              : 'A duração da viagem aumenta em 80%'
+          }
+          topDistance="21.5"
         />
         {transport.name !== 'A pé' && (
           <S.vehicleContainer>
@@ -163,7 +209,7 @@ export function App() {
               data={isUsingVehicleOptions}
               specificFunction={setIsUsingVehicle}
               titleMessage=""
-              topDistance="26.5"
+              topDistance="24.5"
             />
             {isUsingVehicle.name === 'Sim' && (
               <>
@@ -174,7 +220,7 @@ export function App() {
                   data={vehicleWeightOptions}
                   specificFunction={setVehicleWeight}
                   titleMessage=""
-                  topDistance="29.5"
+                  topDistance="27.5"
                 />
                 <TextInput
                   tiny
@@ -183,7 +229,7 @@ export function App() {
                   titleMessage=""
                   specificFunction={setAnimalsAmount}
                   specificValue={animalsAmount}
-                  topDistance="32"
+                  topDistance="30.5"
                   limitValue={
                     vehicleWeight.name === 'Leve/Pequeno'
                       ? 2
@@ -197,12 +243,8 @@ export function App() {
           </S.vehicleContainer>
         )}
       </S.Form>
-      <CalculateButton
-        topDistance="37"
-        calculateTravelTime={calculateTravelTime}
-      />
       {travelResult && (
-        <ResultBox topDistance="37.5" travelResult={travelResult} />
+        <ResultBox topDistance="34" travelResult={travelResult} />
       )}
     </S.Container>
   )

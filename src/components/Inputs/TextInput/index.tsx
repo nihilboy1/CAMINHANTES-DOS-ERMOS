@@ -1,3 +1,4 @@
+import { Tooltip } from '@chakra-ui/react'
 import * as S from './styles'
 
 interface InputProps {
@@ -31,24 +32,33 @@ export function TextInput({
       >
         {name}
       </S.LabelInput>
-
-      <S.TextInputComponent
-        min={1}
-        maxLength={5}
-        tiny={tiny}
-        id={id}
-        value={specificValue}
-        limitValue={limitValue}
-        placeholder="Informe"
-        onChange={e => specificFunction(Number(e.target.value))}
-        onKeyPress={e => {
-          if (!/[0-9]/.test(e.key)) {
-            e.preventDefault()
-          }
-        }}
-        required
-        title={titleMessage}
-      />
+      <Tooltip
+        label={titleMessage}
+        placement="right"
+        bg="white"
+        p={8}
+        maxW={700}
+        ml={10}
+        borderRadius={8}
+        fontStyle="italic"
+      >
+        <S.TextInputComponent
+          min={1}
+          maxLength={5}
+          tiny={tiny}
+          id={id}
+          value={specificValue}
+          limitValue={limitValue}
+          placeholder="Informe"
+          onChange={e => specificFunction(Number(e.target.value))}
+          onKeyPress={e => {
+            if (!/[0-9]/.test(e.key)) {
+              e.preventDefault()
+            }
+          }}
+          required
+        />
+      </Tooltip>
     </S.InputContainer>
   )
 }

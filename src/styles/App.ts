@@ -10,7 +10,6 @@ export const Container = styled.div`
 export const Form = styled.form`
   padding: 3rem;
   padding-top: 4.5rem;
-  display: flex;
 `
 
 export const vehicleContainer = styled.div`

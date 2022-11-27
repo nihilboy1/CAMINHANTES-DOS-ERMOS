@@ -17,6 +17,11 @@ export const InputContainer = styled.div<InputProps>`
   top: ${({ topDistance }) => `${topDistance}rem`};
   border-radius: 0.5rem;
   left: 3%;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid white;
+  }
 `
 
 export const LabelInput = styled.label<InputProps>`
@@ -35,6 +40,7 @@ export const SelectInput = styled.select<InputProps>`
   border: 1px solid white;
   border-radius: 0.5rem;
   font-size: ${({ tiny }) => (tiny ? '0.8rem' : '1rem')};
+  cursor: pointer;
 
   &:focus {
     background-color: white;

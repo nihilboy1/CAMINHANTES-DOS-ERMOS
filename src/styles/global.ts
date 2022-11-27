@@ -30,7 +30,7 @@ html {
 #root{
   transition: none;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   padding: 1.5rem 0.5rem 0.15rem 0.5rem;
   background-image: url(${pageBackground});
   background-position: center;
