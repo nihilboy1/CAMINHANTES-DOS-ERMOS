@@ -9,14 +9,14 @@ export function ResultBox({ travelResult, topDistance }: Props) {
   return (
     <>
       {travelResult != '*' ? (
-        <S.ResultBox topDistance={topDistance}>
+        <S.ResultBox topDistance={topDistance} travelResult={travelResult}>
           <div>
             <p>O tempo necessário para essa a viagem será de:</p>
             <span>{travelResult}</span>
           </div>
         </S.ResultBox>
       ) : (
-        <S.ResultBox topDistance={topDistance}>
+        <S.ResultBox topDistance={topDistance} travelResult={travelResult}>
           <div>
             <span>Altere as variaveis para calcular a viagem</span>
           </div>

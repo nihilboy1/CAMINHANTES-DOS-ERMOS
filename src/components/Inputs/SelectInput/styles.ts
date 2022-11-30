@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 interface InputProps {
-  tiny: boolean
   max?: number
   topDistance?: string
 }
@@ -29,7 +28,7 @@ export const LabelInput = styled.label<InputProps>`
   justify-content: center;
   font-family: 'Grenze';
   color: white;
-  font-size: ${({ tiny }) => (tiny ? '1rem' : '1.5rem')};
+  font-size: 1.5rem
 `
 
 export const SelectInput = styled.select<InputProps>`
@@ -39,7 +38,7 @@ export const SelectInput = styled.select<InputProps>`
   padding: 0.2rem 0.8rem;
   border: 1px solid white;
   border-radius: 0.5rem;
-  font-size: ${({ tiny }) => (tiny ? '0.8rem' : '1rem')};
+  font-size: 1rem;
   cursor: pointer;
 
   &:focus {
@@ -49,7 +48,7 @@ export const SelectInput = styled.select<InputProps>`
 
   & > option {
     transition: none;
-    font-size: ${({ tiny }) => (tiny ? '1rem' : '1.2rem')};
+    font-size: 1.2rem;
     font-family: 'Grenze';
   }
 `

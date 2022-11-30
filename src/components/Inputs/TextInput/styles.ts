@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 interface InputProps {
-  tiny: boolean
   limitValue: number
   value: number
 }
@@ -32,32 +31,28 @@ export const LabelInput = styled.label<InputProps>`
   display: flex;
   justify-content: center;
   font-family: 'Grenze';
-  color: ${({ value, limitValue }) =>
-    value > limitValue ? '#ed4a4a' : 'white'};
-  font-size: ${({ tiny }) => (tiny ? '1rem' : '1.5rem')};
+  color: white;
+  font-size: 1.5rem;
 `
 
 export const TextInputComponent = styled.input<InputProps>`
   text-align: center;
   font-family: 'Grenze';
-  color: ${({ value, limitValue }) =>
-    value > limitValue ? '#ed4a4a' : 'white'};
+  color: white;
   background-color: transparent;
   padding: 0.2rem;
-  width: ${({ tiny }) => (tiny ? '5rem' : '5rem')};
+  width: 5rem;
   border: 1px solid white;
   border-radius: 0.5rem;
   appearance: none;
-  font-size: ${({ tiny }) => (tiny ? '0.9rem' : '1.2rem')};
+  font-size: 1.2rem;
 
   ::placeholder {
     font-size: 1rem;
   }
 
   &:focus {
-    background-color: ${({ value, limitValue }) =>
-      value > limitValue ? '#ed4a4a' : 'white'};
-    color: ${({ value, limitValue }) =>
-      value > limitValue ? 'white' : '#2A341C'};
+    background-color: white;
+    color: #2A341C
   }
 `

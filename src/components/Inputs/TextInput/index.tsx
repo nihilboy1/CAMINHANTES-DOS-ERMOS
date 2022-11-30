@@ -5,7 +5,6 @@ interface InputProps {
   id: string
   name: string
   titleMessage: string
-  tiny?: boolean
   topDistance: string
   specificFunction: (value: number) => void
   specificValue: number
@@ -16,7 +15,6 @@ export function TextInput({
   id,
   name,
   titleMessage,
-  tiny = false,
   topDistance,
   specificFunction,
   specificValue,
@@ -25,7 +23,6 @@ export function TextInput({
   return (
     <S.InputContainer topDistance={topDistance}>
       <S.LabelInput
-        tiny={tiny}
         htmlFor={id}
         value={specificValue}
         limitValue={limitValue}
@@ -45,7 +42,6 @@ export function TextInput({
         <S.TextInputComponent
           min={1}
           maxLength={5}
-          tiny={tiny}
           id={id}
           value={specificValue}
           limitValue={limitValue}

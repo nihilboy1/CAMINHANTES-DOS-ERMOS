@@ -7,7 +7,6 @@ interface SelectInputProps {
   id: string
   name: string
   titleMessage: string
-  tiny?: boolean
   topDistance: string
   specificFunction: (value: any) => void
 }
@@ -17,15 +16,12 @@ export function SelectInput({
   id,
   name,
   titleMessage,
-  tiny = false,
   topDistance,
   specificFunction
 }: SelectInputProps) {
   return (
-    <S.InputContainer tiny={tiny} topDistance={topDistance}>
-      <S.LabelInput tiny={tiny} htmlFor={id}>
-        {name}
-      </S.LabelInput>
+    <S.InputContainer topDistance={topDistance}>
+      <S.LabelInput htmlFor={id}>{name}</S.LabelInput>
 
       <Tooltip
         label={titleMessage}
@@ -38,7 +34,6 @@ export function SelectInput({
         fontStyle="italic"
       >
         <S.SelectInput
-          tiny={tiny}
           name={id}
           id={id}
           onChange={e => specificFunction(JSON.parse(e.target.value))}

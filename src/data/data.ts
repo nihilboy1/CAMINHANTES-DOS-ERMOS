@@ -12,15 +12,38 @@ export interface OptionsProps {
 }
 
 export const transportOptions = [
-  { id: 1, name: 'A pé', kmh: 6.7, kmToPause: 50, minutesPauseTime: 30 },
-  { id: 2, name: 'Cavalo', kmh: 24.2, kmToPause: 40, minutesPauseTime: 60 },
-  { id: 3, name: 'Boi', kmh: 12.2, kmToPause: 65, minutesPauseTime: 60 },
-  { id: 4, name: 'Camelo', kmh: 13.7, kmToPause: 100, minutesPauseTime: 45 }
+  { id: 1, name: 'A pé', kmh: 5.7, kmToPause: 50, minutesPauseTime: 30 },
+  { id: 2, name: 'Cavalo', kmh: 22.2, kmToPause: 40, minutesPauseTime: 60 },
+  { id: 3, name: 'Boi', kmh: 11.2, kmToPause: 65, minutesPauseTime: 60 },
+  { id: 4, name: 'Camelo', kmh: 12.7, kmToPause: 100, minutesPauseTime: 45 },
+
+  {
+    id: 4,
+    name: 'V/T puxado por cavalos',
+    kmh: 15.6,
+    kmToPause: 100,
+    minutesPauseTime: 60
+  },
+  {
+    id: 4,
+    name: 'V/T puxado por bois',
+    kmh: 7.9,
+    kmToPause: 100,
+    minutesPauseTime: 60
+  },
+  {
+    id: 4,
+    name: 'V/T puxado por camelos',
+    kmh: 8.9,
+    kmToPause: 100,
+    minutesPauseTime: 60
+  }
 ]
 
-export const overloadOptions = [
-  { id: 1, name: 'Não' },
-  { id: 2, name: 'Sim' }
+export const loadWeightOptions = [
+  { id: 1, name: 'Normal' },
+  { id: 2, name: 'Pesada' },
+  { id: 3, name: 'Leve' }
 ]
 
 export const moreThan8AdventurersOptions = [
