@@ -22,6 +22,7 @@ export const InputContainer = styled.div<InputContainerProps>`
   border-radius: 0.5rem;
   border: 1px solid transparent;
 
+
   &:hover {
     border: 1px solid white;
   }
@@ -53,6 +54,6 @@ export const TextInputComponent = styled.input<InputProps>`
 
   &:focus {
     background-color: white;
-    color: #2A341C
+    color: #2a341c;
   }
 `

@@ -1,4 +1,4 @@
-import { Tooltip } from '@chakra-ui/react'
+import { Tooltip, useMediaQuery } from '@chakra-ui/react'
 import { OptionsProps } from '../../../data/data'
 
 import * as S from './styles'
@@ -19,16 +19,18 @@ export function SelectInput({
   topDistance,
   specificFunction
 }: SelectInputProps) {
+  const [isSmallerThan1080] = useMediaQuery('(max-width: 1080px)')
+
   return (
     <S.InputContainer topDistance={topDistance}>
       <S.LabelInput htmlFor={id}>{name}</S.LabelInput>
 
       <Tooltip
         label={titleMessage}
-        placement="right"
+        placement={isSmallerThan1080 ? 'top-end' : 'right'}
         bg="white"
-        p={8}
-        maxW={700}
+        p={6}
+        maxW={isSmallerThan1080 ? 350 : 700}
         ml={10}
         borderRadius={8}
         fontStyle="italic"

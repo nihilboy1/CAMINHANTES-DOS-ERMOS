@@ -166,7 +166,7 @@ export function App() {
         />
         <SelectInput
           id="difficultTerrain"
-          name="Quanto da viagem será feita em terreno difícil? "
+          name="Quanto da viagem será em terreno difícil? "
           data={difficultTerrainOptions}
           specificFunction={setDifficultTerrain}
           titleMessage={

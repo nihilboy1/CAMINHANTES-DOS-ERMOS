@@ -21,6 +21,19 @@ export const InputContainer = styled.div<InputProps>`
   &:hover {
     border: 1px solid white;
   }
+
+  @media (max-width: 1080px) {
+    top: ${({ topDistance }) =>
+      topDistance == '9.5'
+        ? `${Number(topDistance) + 1.5}rem`
+        : topDistance == '12.5'
+        ? `${Number(topDistance) + 3}rem`
+        : topDistance == '15.5'
+        ? `${Number(topDistance) + 5}rem`
+        : topDistance == '18.5'
+        ? `${Number(topDistance) + 6.8}rem`
+        : ''};
+  }
 `
 
 export const LabelInput = styled.label<InputProps>`
@@ -28,7 +41,7 @@ export const LabelInput = styled.label<InputProps>`
   justify-content: center;
   font-family: 'Grenze';
   color: white;
-  font-size: 1.5rem
+  font-size: 1.5rem;
 `
 
 export const SelectInput = styled.select<InputProps>`

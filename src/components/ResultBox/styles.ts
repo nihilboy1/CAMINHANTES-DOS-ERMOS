@@ -5,8 +5,6 @@ interface Props {
   travelResult: string
 }
 
-
-
 export const ResultBox = styled.button<Props>`
   height: ${({ travelResult }) => (travelResult != '*' ? '6rem' : '')};
   padding: 0.5rem 3rem;
@@ -23,6 +21,11 @@ export const ResultBox = styled.button<Props>`
   justify-content: space-between;
   flex-direction: row;
   gap: 5rem;
+
+  @media (max-width: 1080px) {
+    top: ${({ topDistance }) =>
+      topDistance == '26' ? `${Number(topDistance) + 8}rem` : ''};
+  }
 
   span,
   p {
