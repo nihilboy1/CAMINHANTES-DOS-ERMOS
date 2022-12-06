@@ -22,19 +22,19 @@ export function SelectInput({
   const [isSmallerThan1080] = useMediaQuery('(max-width: 1080px)')
 
   return (
-    <S.InputContainer topDistance={topDistance}>
-      <S.LabelInput htmlFor={id}>{name}</S.LabelInput>
+    <Tooltip
+      label={titleMessage}
+      placement={isSmallerThan1080 ? 'top-end' : 'right'}
+      bg="white"
+      p={6}
+      maxW={isSmallerThan1080 ? 350 : 700}
+      ml={10}
+      borderRadius={8}
+      fontStyle="italic"
+    >
+      <S.InputContainer topDistance={topDistance}>
+        <S.LabelInput htmlFor={id}>{name}</S.LabelInput>
 
-      <Tooltip
-        label={titleMessage}
-        placement={isSmallerThan1080 ? 'top-end' : 'right'}
-        bg="white"
-        p={6}
-        maxW={isSmallerThan1080 ? 350 : 700}
-        ml={10}
-        borderRadius={8}
-        fontStyle="italic"
-      >
         <S.SelectInput
           name={id}
           id={id}
@@ -48,7 +48,7 @@ export function SelectInput({
             )
           })}
         </S.SelectInput>
-      </Tooltip>
-    </S.InputContainer>
+      </S.InputContainer>
+    </Tooltip>
   )
 }

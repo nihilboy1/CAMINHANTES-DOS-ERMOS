@@ -23,20 +23,25 @@ export function TextInput({
   const [isSmallerThan1080] = useMediaQuery('(max-width: 1080px)')
 
   return (
-    <S.InputContainer topDistance={topDistance}>
-      <S.LabelInput htmlFor={id} value={specificValue} limitValue={limitValue}>
-        {name}
-      </S.LabelInput>
-      <Tooltip
-        label={titleMessage}
-        placement={isSmallerThan1080 ? 'top' : 'right'}
-        bg="white"
-        p={8}
-        maxW={700}
-        ml={10}
-        borderRadius={8}
-        fontStyle="italic"
-      >
+    <Tooltip
+      label={titleMessage}
+      placement={isSmallerThan1080 ? 'top' : 'right'}
+      bg="white"
+      p={8}
+      maxW={700}
+      ml={10}
+      borderRadius={8}
+      fontStyle="italic"
+    >
+      <S.InputContainer topDistance={topDistance}>
+        <S.LabelInput
+          htmlFor={id}
+          value={specificValue}
+          limitValue={limitValue}
+        >
+          {name}
+        </S.LabelInput>
+
         <S.TextInputComponent
           min={1}
           maxLength={5}
@@ -52,7 +57,7 @@ export function TextInput({
           }}
           required
         />
-      </Tooltip>
-    </S.InputContainer>
+      </S.InputContainer>
+    </Tooltip>
   )
 }
