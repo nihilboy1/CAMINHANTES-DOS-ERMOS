@@ -62,14 +62,3 @@ export const difficultTerrainOptions = [
   { id: 4, name: 'A maior parte' },
   { id: 5, name: 'Todo o trajeto' }
 ]
-
-export const isUsingVehicleOptions = [
-  { id: 1, name: 'Não' },
-  { id: 2, name: 'Sim' }
-]
-
-export const vehicleWeightOptions = [
-  { id: 1, name: 'Leve/Pequeno' },
-  { id: 2, name: 'Normal' },
-  { id: 3, name: 'Pesado/Grande' }
-]

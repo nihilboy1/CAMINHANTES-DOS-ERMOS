@@ -25,13 +25,13 @@ export const InputContainer = styled.div<InputProps>`
   @media (max-width: 1080px) {
     top: ${({ topDistance }) =>
       topDistance == '9.5'
-        ? `${Number(topDistance) + 1.5}rem`
-        : topDistance == '12.5'
         ? `${Number(topDistance) + 3}rem`
-        : topDistance == '15.5'
+        : topDistance == '12.5'
         ? `${Number(topDistance) + 5}rem`
-        : topDistance == '18.5'
+        : topDistance == '15.5'
         ? `${Number(topDistance) + 6.8}rem`
+        : topDistance == '18.5'
+        ? `${Number(topDistance) + 8.8}rem`
         : ''};
   }
 `

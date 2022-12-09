@@ -22,9 +22,13 @@ export const InputContainer = styled.div<InputContainerProps>`
   border-radius: 0.5rem;
   border: 1px solid transparent;
 
-
   &:hover {
     border: 1px solid white;
+  }
+
+  @media (max-width: 1080px) {
+    top: ${({ topDistance }) =>
+      topDistance == '6.5' ? `${Number(topDistance) + 1}rem` : ''};
   }
 `
 

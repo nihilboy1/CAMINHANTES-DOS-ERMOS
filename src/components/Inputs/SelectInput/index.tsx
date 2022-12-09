@@ -24,7 +24,7 @@ export function SelectInput({
   return (
     <Tooltip
       label={titleMessage}
-      placement={isSmallerThan1080 ? 'top-end' : 'right'}
+      placement={isSmallerThan1080 ? 'top' : 'right'}
       bg="white"
       p={6}
       maxW={isSmallerThan1080 ? 350 : 700}
