@@ -26,6 +26,7 @@
   <li>CSS</li>
   <li>Typescript</li>
   <li>React</li>
+  <li>Chakra UI<li/>
 </ul>
 
 <h1>👥 | Autor(es)</h1>
