@@ -1,7 +1,7 @@
 
 <h1>🚀 | CAMINHANTES DOS ERMOS</h1>
 <h3>
-  Página pessoal, criada com objetivo de ajudar nas sessões de rpg
+  Calculadora de tempo para viagens, criada com objetivo de ajudar nas minhas sessões de rpg
 </h3>
 
 <h1>🔎 | Vizualização do projeto</h1>
